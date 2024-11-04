@@ -21,7 +21,7 @@ import java.net.URI;
 @RequiredArgsConstructor
 public class ClientService extends TextWebSocketHandler {
 
-    private static final String URL = "ws://localhost:8080/tutorial";
+    private static final String URL = "ws://localhost:8080/data";
     private final WebSocketClient webSocketClient;
     private WebSocketSession webSocketSession;
 
@@ -75,17 +75,17 @@ public class ClientService extends TextWebSocketHandler {
     }
 
     @Override
-    public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
+    public void afterConnectionClosed(WebSocketSession session, CloseStatus status) {
         log.info("Connection closed. Session id: {} Status: {}", session.getId(), status);
     }
 
     @Override
-    protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
+    protected void handleTextMessage(WebSocketSession session, TextMessage message) {
         log.info("Received message from server: {}", message.getPayload());
     }
 
     @Override
-    public void afterConnectionEstablished(WebSocketSession session) throws Exception {
+    public void afterConnectionEstablished(WebSocketSession session) {
         log.info("Connection established with server. Session id: {}", session.getId());
         webSocketSession = session;
     }
